@@ -1,0 +1,37 @@
+﻿@page
+@model RealTimeWebApp.Pages.HomeModel
+@{
+}
+
+<h2>Hubs</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <form method="post" role="form" class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button asp-page-handler="LogOff" class="btn-light btn-block">Log Off</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<table class="table table-sm table-striped table-bordered">
+    @foreach (var item in Model.Items)
+    {
+    <tr>
+        <td>@item.guid</td>
+        <td>@item.type</td>
+        <td>
+            <form method="post" role="form" class="form-horizontal">
+                <button asp-page-handler="Subscribe" class="btn-light btn-block" asp-route-data="@item.name">Subscribe</button>
+            </form>
+        </td>
+        <td>
+            <form method="post" role="form" class="form-horizontal">
+                <button asp-page-handler="Unsubscribe" class="btn-light btn-block" asp-route-data="@item.name">Unsubscribe</button>
+            </form>
+        </td>
+    </tr>
+    }
+</table>
